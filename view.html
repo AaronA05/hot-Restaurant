@@ -38,7 +38,7 @@ var myUrl = window.location.origin;
   function runTable  (){
 
       $.ajax({
-      	url: myUrl + "/api/add/", 
+      	url: myUrl + "/api/tables/", 
       	method: "GET"})
         .done(function(tableData){
           console.log(tableData);
@@ -53,7 +53,22 @@ var myUrl = window.location.origin;
           }
           
         });
+      $.ajax({
+      	url: myUrl + "/api/wait/", 
+      	method: "GET"})
+        .done(function(tableData){
+          console.log(tableData);
+          for (var i = 0; i<tableData.length; i++){
+            
+          	console.log("++++++++++++++=========================++++++++++++++++++++");
+            console.log(tableData[i]);
+            console.log("Name: " + tableData[i].name);
 
+            var tableSelection = $("div");
+            $("tableSelection").append(tableSelection);
+          }
+          
+        });
 //       $("#view-table").on("click", function() {
 // 	        var currentReservations = {
 // 	          name: $("#customerName").val().trim();

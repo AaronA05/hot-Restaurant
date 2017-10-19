@@ -29,9 +29,12 @@ app.get("/view", function(req, res){
 	res.sendFile(path.join(__dirname, "view.html"));
 })
 
-app.get("/api/add", function(req, res){
-	console.log(res.json(tableRes));
+app.get("/api/tables", function(req, res){
+	res.json(tableRes);
+});
 
+app.get("/api/wait", function(req, res){
+	res.json(waitRes);
 });
 
 
