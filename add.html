@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Page</title>
+  <title>Add Page</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	
+  
 
-	<script
+  <script
   src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
   crossorigin="anonymous"></script>
@@ -20,11 +20,11 @@ Button to go back home
 
 
 Form with:
-	Name
-	Phone
-	Email
-	Unique ID
-	METHOD: POST, ROLE: FORM
+  Name
+  Phone
+  Email
+  Unique ID
+  METHOD: POST, ROLE: FORM
 
 
 
@@ -34,7 +34,7 @@ POST method used to add the table reservation form
 <div class = "container">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong>Add Characters</strong></h3>
+            <h3 class="panel-title"><strong>Table Reservation</strong></h3>
           </div>
           <div class="panel-body">
             <form role="form">
@@ -45,28 +45,51 @@ POST method used to add the table reservation form
               </div>
 
               <div class="form-group">
-                <label for="role">Role</label>
-                <input type="text" class="form-control" id="role">
+                <label for="phone">Phone Number</label>
+                <input type="text" class="form-control" id="phone">
               </div>
 
               <div class="form-group">
-                <label for="age">Age</label>
-                <input type="text" class="form-control" id="age">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email">
               </div>
 
               <div class="form-group">
-                <label for="force-points">Force Points</label>
-                <input type="text" class="form-control" id="force-points">
+                <label for="unique_ID">Unique ID</label>
+                <input type="text" class="form-control" id="unique_ID">
               </div>
 
             </form>
             <br>
             <div class="text-right">
-              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="glyphicon glyphicon-fire"></span> Add to the Force</button>
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn">Submit</button>
             </div>
           </div>
         </div>
 </div>
+
+<script type="text/javascript">
+  $("#add-btn").on("click", function(event){
+    event.preventDefault();
+
+    var newReservation = {
+      name: $("#name").val().trim(),
+      phone: $("#phone").val().trim(),
+      email: $("#email").val().trim(),
+      id: $("#unique_ID").val().trim()
+    };
+  
+
+
+    $.post("/api/add", newReservation)
+    .done(function(data){
+      console.log(data);
+    });
+
+  });
+
+
+</script>
 
 </body>
 </html>
