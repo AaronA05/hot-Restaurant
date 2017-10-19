@@ -7,8 +7,8 @@
   
 
   <script
-  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
 </head>
@@ -69,6 +69,7 @@ POST method used to add the table reservation form
 </div>
 
 <script type="text/javascript">
+
   $("#add-btn").on("click", function(event){
     event.preventDefault();
 
@@ -79,9 +80,12 @@ POST method used to add the table reservation form
       id: $("#unique_ID").val().trim()
     };
   
+    // console.log(newReservation);
 
-
-    $.post("/api/add", newReservation)
+    $.ajax({
+      url:"api/add",
+      method: "POST",
+      data: newReservation})
     .done(function(data){
       console.log(data);
     });

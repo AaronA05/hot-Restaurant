@@ -21,6 +21,19 @@ app.get("/add", function(req, res){
 	res.sendFile(path.join(__dirname, "add.html"));
 });
 
+//app.get("/api/tables")
+
+//app.get("api/wait")
+
+app.get("/view", function(req, res){
+	res.sendFile(path.join(__dirname, "view.html"));
+})
+
+app.get("/api/add", function(req, res){
+	console.log(res.json(tableRes));
+
+});
+
 
 app.listen(PORT, function(){
 	console.log("App listening on port: " + PORT);
@@ -31,17 +44,17 @@ app.post("/api/add", function(req, res){
 
 	console.log(newRes);
 
-	if(tableRes.length <= 5){
+	if(tableRes.length < 5){
 		tableRes.push(newRes);
 		res.json(newRes);
 	}
 
-	if(tableRes >= 6 ){
+	if(tableRes.length >= 5 ){
 		waitRes.push(newRes);
 		res.json(newRes);
 	}
 
-
+	console.log("Tables: " + JSON.stringify((tableRes)));
 
 })
 
